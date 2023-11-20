@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>coder appas</title>
+    <style>
+        #outside{
+            width: 400px;
+            height: 300px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background: rgb(114, 92, 92);
+        }
+        #inside{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 340px;
+            height: 240px;
+            text-align: center;
+            background-color: aqua; 
+        }
+        #time{
+            width: 100%;
+           height: 200px;
+            color: wheat;
+            font-size: 44px;
+            font-family:cursive;
+            background-color: black;
+            line-height: 200px;
+        }
+        #data{
+            height: 40px;
+            background: wheat;
+            font-size: 22px;
+            font-family:cursive;
+        }
+        #setTime,#setData{
+            margin: 0%;
+        }
+        input[type="color" i]{
+          border: 0px solid black;
+          background-color: black;
+        }
+    </style>
+</head>
+<body id="body">
+    <main id="outside">
+        <main id="inside">
+            <article id="time">
+                <h1 id="setTime">23:00</h1>
+            </article>
+            <article id="data">
+                <p id="setData">20-3-2023</p>
+            </article>
+            <article id="color">
+                <input type="color" id="setcolor" onchange="getcolor()">
+            </article>
+        </main>
+    </main>
+    <script>
+        function upData(){
+            var data=new Date();
+            var setTime=document.getElementById("setTime");
+            setTime.innerHTML=data.getHours() +":"+ data.getMinutes() +":"+data.getSeconds();
+            var setData=document.getElementById("setData");
+            setData.innerHTML=data.getDate()+"-"+parseInt(data.getMonth()+1)+"-"+data.getFullYear();
+        }
+        setInterval(upData,100);
+        onload = upData();
+
+        function getcolor(){
+            var getcolor=document.getElementById("setcolor").value;
+            localStorage.setItem("Color",getcolor);
+            document.getElementById("time").style.background=localStorage.getItem("Color");
+            document.getElementById("body").style.background=localStorage.getItem("Color");
+        }
+        function setcolor(){
+          document.getElementById("setcolor").value=localStorage.getItem("Color");
+          document.getElementById("time").style.background=localStorage.getItem("Color");
+            document.getElementById("body").style.background=localStorage.getItem("Color");
+        }
+        setInterval(setcolor(),100)
+    </script>
+</body>
+</html>
